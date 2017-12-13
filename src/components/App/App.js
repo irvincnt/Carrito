@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Container, Grid } from 'semantic-ui-react'
+import { Container, Grid, Header } from 'semantic-ui-react'
 import ProductList from '../ProductList'
 import Cart from '../Cart'
+import style from './App.css'
 
 class App extends Component {
   constructor() {
@@ -69,14 +70,15 @@ class App extends Component {
 
   render() {
     return (
-      <Container>
+      <Container className={style.root}>
+        <Header as='h3' block>
+          E-commerce
+        </Header>
         <Grid>
           <Grid.Column width={10}>
-            <h1>HOLA</h1>
             <ProductList products={this.state.products}/>
           </Grid.Column>
           <Grid.Column width={6}>
-            <h1>HOLA</h1>
             <Cart/>
           </Grid.Column>
         </Grid>
