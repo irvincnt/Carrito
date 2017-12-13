@@ -24,9 +24,9 @@ class Product extends Component {
                 <Label>{this.props.marca}</Label>
                 <Label>{this.props.shipping}</Label>
                 <Label>{this.props.status}</Label>
-                <Button primary floated='right'>
-                  Comprar
-                  <Icon name='right chevron' />
+                <Button basic color='blue' compact floated='right'>
+                  Agregar al carrito
+                  <Icon name='right add to cart' />
                 </Button>
               </Item.Extra>
             </Item.Content>

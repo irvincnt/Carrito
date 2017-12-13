@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Feed } from 'semantic-ui-react'
+import { Card, Feed, Icon } from 'semantic-ui-react'
 
 class Cart extends Component {
   render() {
@@ -7,7 +7,8 @@ class Cart extends Component {
       <Card>
         <Card.Content>
           <Card.Header>
-            Recent Activity
+            Carrito de Compras
+            <Icon size="large" name='right add to cart' />
           </Card.Header>
         </Card.Content>
         <Card.Content>
