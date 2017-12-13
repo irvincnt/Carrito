@@ -9,15 +9,21 @@ class ProductList extends Component {
   render() {
     return (
       <div>
-        ProductList
-      <Product/>
-      {this.props.products.map( p => {
-        return (
-          <span>{p.name}</span>
-        )
-      })}
+        {this.props.products.map((p, index) => {
+          return (
+            <Product
+              key={index}
+              name={p.name}
+              picture={p.picture}
+              price={p.price}
+              datails={p.datails}
+              marca={p.marca}
+              shipping={p.shipping}
+              status={p.status}
+            />
+          )
+        })}
       </div>
-
     )
   }
 }
