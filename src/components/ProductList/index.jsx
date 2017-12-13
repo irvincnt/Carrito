@@ -1,4 +1,5 @@
 import React, { Component }  from 'react'
+import { Segment } from 'semantic-ui-react'
 import Product from '../Product'
 
 class ProductList extends Component {
@@ -8,7 +9,7 @@ class ProductList extends Component {
 
   render() {
     return (
-      <div>
+      <Segment>
         {this.props.products.map((p, index) => {
           return (
             <Product
@@ -23,7 +24,7 @@ class ProductList extends Component {
             />
           )
         })}
-      </div>
+      </Segment>
     )
   }
 }
