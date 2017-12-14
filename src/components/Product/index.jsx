@@ -24,8 +24,10 @@ class Product extends Component {
                 <Label>{this.props.marca}</Label>
                 <Label>{this.props.shipping}</Label>
                 <Label>{this.props.status}</Label>
+                <Button compact floated='right' attached='left'>+</Button>
+                <Button compact floated='right' attached='right'>-</Button>
                 <Button basic color='blue' compact floated='right'>
-                  Agregar al carrito
+                  Agregar
                   <Icon name='right add to cart' />
                 </Button>
               </Item.Extra>
