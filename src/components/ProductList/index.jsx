@@ -10,10 +10,10 @@ class ProductList extends Component {
   render() {
     return (
       <Segment>
-        {this.props.products.map((p, index) => {
+        {this.props.products.map(p => {
           return (
             <Product
-              key={index}
+              key={p.id}
               name={p.name}
               picture={p.picture}
               price={p.price}
