@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { Card, Feed, Icon } from 'semantic-ui-react'
 
 class Cart extends Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     return(
       <Card>
@@ -12,37 +16,21 @@ class Cart extends Component {
           </Card.Header>
         </Card.Content>
         <Card.Content>
+        {this.props.items.map(p => {
+          return (
           <Feed>
             <Feed.Event>
-              <Feed.Label image='https://react.semantic-ui.com/assets/images/avatar/small/jenny.jpg' />
+              <Feed.Label image='https://http2.mlstatic.com/camara-D_Q_NP_743505-MLM25028787002_082016-X.webp' />
               <Feed.Content>
-                <Feed.Date content='1 day ago' />
+                <Feed.Date content={p.name} />
                 <Feed.Summary>
-                  You added <a>Jenny Hess</a> to your <a>coworker</a> group.
-                </Feed.Summary>
-              </Feed.Content>
-            </Feed.Event>
-
-            <Feed.Event>
-              <Feed.Label image='https://react.semantic-ui.com/assets/images/avatar/small/molly.png' />
-              <Feed.Content>
-                <Feed.Date content='3 days ago' />
-                <Feed.Summary>
-                  You added <a>Molly Malone</a> as a friend.
-                </Feed.Summary>
-              </Feed.Content>
-            </Feed.Event>
-
-            <Feed.Event>
-              <Feed.Label image='https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg' />
-              <Feed.Content>
-                <Feed.Date content='4 days ago' />
-                <Feed.Summary>
-                  You added <a>Elliot Baker</a> to your <a>musicians</a> group.
+                  {p.price}
                 </Feed.Summary>
               </Feed.Content>
             </Feed.Event>
           </Feed>
+          )
+        })}
         </Card.Content>
       </Card>
     )
