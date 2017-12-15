@@ -1,6 +1,5 @@
 import React, { Component }  from 'react'
-import { Segment } from 'semantic-ui-react'
-import Product from '../Product'
+import { Segment, Button, Icon, Item, Label, Divider } from 'semantic-ui-react'
 
 class ProductList extends Component {
   constructor(props) {
@@ -12,16 +11,31 @@ class ProductList extends Component {
       <Segment>
         {this.props.products.map(p => {
           return (
-            <Product
-              key={p.id}
-              name={p.name}
-              picture={p.picture}
-              price={p.price}
-              datails={p.datails}
-              marca={p.marca}
-              shipping={p.shipping}
-              status={p.status}
-            />
+            <Item.Group relaxed>
+              <Item>
+                <Item.Image size='tiny' src={p.picture} />
+
+                <Item.Content>
+                  <Item.Header as='a'>{p.name}</Item.Header>
+                  <Item.Meta>
+                    <span className='cinema'>{p.price}</span>
+                  </Item.Meta>
+                  <Item.Description>{p.datails}</Item.Description>
+                  <Item.Extra>
+                    <Label>{p.marca}</Label>
+                    <Label>{p.shipping}</Label>
+                    <Label>{p.status}</Label>
+                    <Button compact floated='right' attached='left'>+</Button>
+                    <Button compact attached='right'>-</Button>
+                    <Button basic color='blue' compact floated='right'>
+                      Agregar
+                      <Icon name='right add to cart' />
+                    </Button>
+                  </Item.Extra>
+                </Item.Content>
+              </Item>
+              <Divider fitted />
+          </Item.Group>
           )
         })}
       </Segment>

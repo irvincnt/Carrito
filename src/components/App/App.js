@@ -55,11 +55,13 @@ class App extends Component {
         {
           id: 1,
           name: 'Nikon D5500',
+          img: 'https://http2.mlstatic.com/camara-D_Q_NP_743505-MLM25028787002_082016-X.webp',
           price: 12000,
           cant: 2
         },
         {
           id: 1,
+          img: 'https://http2.mlstatic.com/camara-D_Q_NP_743505-MLM25028787002_082016-X.webp',
           name: 'Nikon D5500',
           price: 12000,
           cant: 2

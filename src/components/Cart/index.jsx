@@ -20,7 +20,7 @@ class Cart extends Component {
           return (
           <Feed>
             <Feed.Event>
-              <Feed.Label image='https://http2.mlstatic.com/camara-D_Q_NP_743505-MLM25028787002_082016-X.webp' />
+              <Feed.Label image={p.img} />
               <Feed.Content>
                 <Feed.Date content={p.name} />
                 <Feed.Summary>
