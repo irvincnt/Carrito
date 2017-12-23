@@ -9,20 +9,9 @@ class ProductList extends Component {
      this.onSendProduct = this.props.onSendProduct.bind(this)
   }
 
-  handleAdd() {
-    this.props.add();
-  }
-
-  handleRest() {
-    this.props.rest();
-  }
-
   render() {
     return (
       <Segment>
-        <Button basic color='blue' compact floated='right' onClick={this.handleAdd.bind(this)}>Incrementa</Button>
-        <Button basic color='blue' compact floated='right' onClick={this.handleRest.bind(this)}>Decrementar</Button>
-
         {this.props.products.map(p => {
           return (
             <Product

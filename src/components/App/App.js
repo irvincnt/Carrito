@@ -54,22 +54,13 @@ class App extends Component {
       ],
       cart: []
     }
-
-    this.increment = this.increment.bind(this)
-    this.decrement = this.decrement.bind(this)
+    
     this.handleSendProduct = this.handleSendProduct.bind(this)
   }
 
-  increment() {
-    this.setState(prevState => ({
-      count: this.state.count + 1
-    }));
-  }
-
-  decrement() {
-    this.setState(prevState => ({
-      count: this.state.count -1
-    }));
+  searchProduct(productId) {
+    var product = this.state.cart.find(p => p.id === productId)
+    return product
   }
 
   handleSendProduct (productId) {
@@ -78,11 +69,18 @@ class App extends Component {
       id: product.id,
       name: product.name,
       img: product.picture,
-      price: product.price
+      price: product.price + 1000
     }
-    this.setState({
-      cart: this.state.cart.concat([productCart])
-    })
+
+    var exist = this.searchProduct(product.id)
+    if(undefined !== exist && exist !== null){
+      console.log('ya existe')
+    }else{
+      this.setState({
+        cart: this.state.cart.concat([productCart])
+      })
+    }
+
   }
 
   render() {
@@ -95,8 +93,6 @@ class App extends Component {
           <Grid.Column width={10}>
             <ProductList
               products={this.state.products}
-              add={this.increment}
-              rest={this.decrement}
               onSendProduct={this.handleSendProduct}
             />
           </Grid.Column>
