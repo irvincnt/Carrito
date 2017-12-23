@@ -5,8 +5,8 @@ import Cart from '../Cart'
 import style from './App.css'
 
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       count: 5,
       products: [
@@ -61,7 +61,7 @@ class App extends Component {
           cant: 2
         },
         {
-          id: 1,
+          id: 2,
           img: 'https://http2.mlstatic.com/camara-D_Q_NP_743505-MLM25028787002_082016-X.webp',
           name: 'Nikon D5500',
           price: 12000,
@@ -69,6 +69,10 @@ class App extends Component {
         }
       ]
     }
+
+    this.increment = this.increment.bind(this)
+    this.decrement = this.decrement.bind(this)
+    this.handleSendProduct = this.handleSendProduct.bind(this)
   }
 
   increment() {
@@ -83,6 +87,11 @@ class App extends Component {
     }));
   }
 
+  handleSendProduct (productId) {
+    let product = this.state.products.filter(p => p.id === productId);
+    console.log(product);
+  }
+
   render() {
     return (
       <Container className={style.root}>
@@ -91,7 +100,12 @@ class App extends Component {
         </Header>
         <Grid>
           <Grid.Column width={10}>
-            <ProductList products={this.state.products} add={this.increment.bind(this)} rest={this.decrement.bind(this)}/>
+            <ProductList
+              products={this.state.products}
+              add={this.increment}
+              rest={this.decrement}
+              onSendProduct={this.handleSendProduct}
+            />
           </Grid.Column>
           <Grid.Column width={6}>
             <Cart items={this.state.cart} count={this.state.count}/>

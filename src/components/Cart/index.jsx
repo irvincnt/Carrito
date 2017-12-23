@@ -12,13 +12,13 @@ class Cart extends Component {
         <Card.Content>
           <Card.Header>
             Carrito de Compras ( {this.props.count} )
-            <Icon size="large" name='right add to cart' />
+            <Icon size="large"  />
           </Card.Header>
         </Card.Content>
         <Card.Content>
         {this.props.items.map(p => {
           return (
-          <Feed>
+          <Feed key={p.id}>
             <Feed.Event>
               <Feed.Label image={p.img} />
               <Feed.Content>

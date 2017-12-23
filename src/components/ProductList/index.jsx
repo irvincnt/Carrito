@@ -5,6 +5,8 @@ import Product from '../Product'
 class ProductList extends Component {
   constructor(props) {
     super(props)
+
+     this.onSendProduct = this.props.onSendProduct.bind(this)
   }
 
   handleAdd() {
@@ -32,6 +34,7 @@ class ProductList extends Component {
               marca={p.marca}
               shipping={p.shipping}
               status={p.status}
+              onSendProduct={() => this.props.onSendProduct(p.id)}
             />
           )
         })}
