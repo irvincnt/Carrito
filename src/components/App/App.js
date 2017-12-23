@@ -14,7 +14,7 @@ class App extends Component {
           id: 1,
           name: 'Nikon D5500 24.2 Mp',
           picture: 'https://http2.mlstatic.com/camara-D_Q_NP_100101-MLM20255371968_032015-X.webp',
-          price: '$ 12,346',
+          price: 12346,
           datails: 'Compra Protegida, recibe el producto que esperabas o te devolvemos tu dinero.',
           marca: 'Nikon',
           shipping: 'Envío gratis a todo el país',
@@ -25,7 +25,7 @@ class App extends Component {
           id: 2,
           name: 'Sony Dsc-h300',
           picture: 'https://http2.mlstatic.com/camara-D_Q_NP_621585-MLM25970442208_092017-X.webp',
-          price: '$ 3,938',
+          price: 3938,
           datails: 'Compra Protegida, recibe el producto que esperabas o te devolvemos tu dinero.',
           marca: 'Sony',
           shipping: 'Envío gratis a todo el país',
@@ -35,7 +35,7 @@ class App extends Component {
           id: 3,
           name: 'Fujifilm X-t10 ',
           picture: 'https://http2.mlstatic.com/camara-D_Q_NP_997939-MLM25733136676_072017-X.webp',
-          price: '$ 18,999',
+          price: 18999,
           datails: 'Compra Protegida, recibe el producto que esperabas o te devolvemos tu dinero.',
           marca: 'Fujifilm',
           shipping: 'Envío gratis a todo el país',
@@ -45,29 +45,14 @@ class App extends Component {
           id: 4,
           name: 'Reflex Canon Eos',
           picture: 'https://http2.mlstatic.com/camara-D_Q_NP_743505-MLM25028787002_082016-X.webp',
-          price: '$ 12,346',
+          price: 12346,
           datails: 'Compra Protegida, recibe el producto que esperabas o te devolvemos tu dinero.',
           marca: 'Canon',
           shipping: 'Envío gratis a todo el país',
           status: '21 vendidos'
         }
       ],
-      cart: [
-        {
-          id: 1,
-          name: 'Nikon D5500',
-          img: 'https://http2.mlstatic.com/camara-D_Q_NP_743505-MLM25028787002_082016-X.webp',
-          price: 12000,
-          cant: 2
-        },
-        {
-          id: 2,
-          img: 'https://http2.mlstatic.com/camara-D_Q_NP_743505-MLM25028787002_082016-X.webp',
-          name: 'Nikon D5500',
-          price: 12000,
-          cant: 2
-        }
-      ]
+      cart: []
     }
 
     this.increment = this.increment.bind(this)
@@ -88,8 +73,16 @@ class App extends Component {
   }
 
   handleSendProduct (productId) {
-    let product = this.state.products.filter(p => p.id === productId);
-    console.log(product);
+    let product = this.state.products.find(p => p.id === productId);
+    var productCart = {
+      id: product.id,
+      name: product.name,
+      img: product.picture,
+      price: product.price
+    }
+    this.setState({
+      cart: this.state.cart.concat([productCart])
+    })
   }
 
   render() {
