@@ -22,8 +22,6 @@ class Product extends Component {
                 <Label>{this.props.marca}</Label>
                 <Label>{this.props.shipping}</Label>
                 <Label>{this.props.status}</Label>
-                <Button compact floated='right' attached='left'>+</Button>
-                <Button compact floated='right'>-</Button>
                 <Button
                   basic
                   compact

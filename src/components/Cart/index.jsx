@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Feed, Icon } from 'semantic-ui-react'
+import { Card, Feed, Icon, Button } from 'semantic-ui-react'
 
 class Cart extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class Cart extends Component {
       <Card>
         <Card.Content>
           <Card.Header>
-            Carrito de Compras ( {this.props.count} )
+            Carrito de Compras ( {this.props.num} )
             <Icon size="large"  />
           </Card.Header>
         </Card.Content>
@@ -27,6 +27,12 @@ class Cart extends Component {
                   {p.price}
                 </Feed.Summary>
               </Feed.Content>
+              <Card.Content extra>
+                <div className='ui two buttons'>
+                  <Button compact size='mini' floated='right' attached='left'>+</Button>
+                  <Button compact size='mini' floated='right' attached='right' >-</Button>
+                </div>
+              </Card.Content>
             </Feed.Event>
           </Feed>
           )

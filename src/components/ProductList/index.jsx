@@ -1,5 +1,5 @@
 import React, { Component }  from 'react'
-import { Segment, Button } from 'semantic-ui-react'
+import { Segment } from 'semantic-ui-react'
 import Product from '../Product'
 
 class ProductList extends Component {
