@@ -8,6 +8,7 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
+      count: 5,
       products: [
         {
           id: 1,
@@ -70,6 +71,18 @@ class App extends Component {
     }
   }
 
+  increment() {
+    this.setState(prevState => ({
+      count: this.state.count + 1
+    }));
+  }
+
+  decrement() {
+    this.setState(prevState => ({
+      count: this.state.count -1
+    }));
+  }
+
   render() {
     return (
       <Container className={style.root}>
@@ -78,10 +91,10 @@ class App extends Component {
         </Header>
         <Grid>
           <Grid.Column width={10}>
-            <ProductList products={this.state.products}/>
+            <ProductList products={this.state.products} add={this.increment.bind(this)} rest={this.decrement.bind(this)}/>
           </Grid.Column>
           <Grid.Column width={6}>
-            <Cart items={this.state.cart}/>
+            <Cart items={this.state.cart} count={this.state.count}/>
           </Grid.Column>
         </Grid>
       </Container>

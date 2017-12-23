@@ -11,7 +11,7 @@ class Cart extends Component {
       <Card>
         <Card.Content>
           <Card.Header>
-            Carrito de Compras
+            Carrito de Compras ( {this.props.count} )
             <Icon size="large" name='right add to cart' />
           </Card.Header>
         </Card.Content>
