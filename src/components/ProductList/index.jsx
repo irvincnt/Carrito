@@ -6,7 +6,7 @@ class ProductList extends Component {
   constructor(props) {
     super(props)
 
-     this.onSendProduct = this.props.onSendProduct.bind(this)
+     this.onSaveProduct = this.props.onSaveProduct.bind(this)
   }
 
   render() {
@@ -23,7 +23,7 @@ class ProductList extends Component {
               marca={p.marca}
               shipping={p.shipping}
               status={p.status}
-              onSendProduct={() => this.props.onSendProduct(p.id)}
+              onSaveProduct={() => this.props.onSaveProduct(p.id)}
             />
           )
         })}

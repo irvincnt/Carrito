@@ -11,7 +11,6 @@ class Product extends Component {
       <Item.Group relaxed>
           <Item>
             <Item.Image size='tiny' src={this.props.picture} />
-
             <Item.Content>
               <Item.Header as='a'>{this.props.name}</Item.Header>
               <Item.Meta>
@@ -27,7 +26,7 @@ class Product extends Component {
                   compact
                   color='blue'
                   floated='right'
-                  onClick={this.props.onSendProduct}
+                  onClick={this.props.onSaveProduct}
                 >
                   Agregar
                   {/* <Icon name='right add to cart' /> */}

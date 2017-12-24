@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Grid, Header } from 'semantic-ui-react'
 import ProductList from '../ProductList'
-import Cart from '../Cart'
+import CartList from '../CartList'
 import style from './App.css'
 
 class App extends Component {
@@ -55,7 +55,8 @@ class App extends Component {
       cart: []
     }
 
-    this.handleSendProduct = this.handleSendProduct.bind(this)
+    this.handleSaveProduct = this.handleSaveProduct.bind(this)
+    this.handlerAddProduct = this.handlerAddProduct.bind(this)
   }
 
   searchProduct(productId) {
@@ -63,7 +64,7 @@ class App extends Component {
     return product
   }
 
-  handleSendProduct (productId) {
+  handleSaveProduct(productId) {
     let product = this.state.products.find(p => p.id === productId);
     var productCart = {
       id: product.id,
@@ -72,7 +73,6 @@ class App extends Component {
       price: product.price * 4,
       cant: 4
     }
-
     var exist = this.searchProduct(product.id)
     if(undefined !== exist && exist !== null){
       console.log('ya existe')
@@ -81,8 +81,11 @@ class App extends Component {
         cart: this.state.cart.concat([productCart])
       })
     }
-
   }
+
+handlerAddProduct(productId) {
+
+}
 
   render() {
     return (
@@ -94,11 +97,15 @@ class App extends Component {
           <Grid.Column width={10}>
             <ProductList
               products={this.state.products}
-              onSendProduct={this.handleSendProduct}
+              onSaveProduct={this.handleSaveProduct}
             />
           </Grid.Column>
           <Grid.Column width={6}>
-            <Cart items={this.state.cart} num={this.state.num}/>
+            <CartList
+              items={this.state.cart}
+              num={this.state.num}
+              onAddProduct={this.handlerAddProduct}
+            />
           </Grid.Column>
         </Grid>
       </Container>

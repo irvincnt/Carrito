@@ -1,37 +1,43 @@
 import React, { Component } from 'react'
-import { Card, Icon } from 'semantic-ui-react'
+import { Card, Feed, Button } from 'semantic-ui-react'
 
-import CartList from '../CartList'
 
 class Cart extends Component {
-  constructor(props) {
+  constructor(props){
     super(props)
   }
 
-  render() {
+  render(){
     return(
-      <Card>
-        <Card.Content>
-          <Card.Header>
-            Carrito de Compras ( {this.props.num} )
-            <Icon size="large"  />
-          </Card.Header>
-        </Card.Content>
-        <Card.Content>
-        {this.props.items.map(p => {
-          return (
-          <CartList
-            key={p.id}
-            img={p.img}
-            name={p.name}
-            price={p.price}
-          />
-          )
-        })}
-        </Card.Content>
-      </Card>
+      <Feed>
+        <Feed.Event>
+          <Feed.Label image={this.props.img} />
+          <Feed.Content>
+            <Feed.Date content={this.props.name} />
+            <Feed.Summary>
+              {this.props.price}
+            </Feed.Summary>
+          </Feed.Content>
+          <Card.Content extra>
+            <div className='ui two buttons'>
+              <Button
+                compact
+                size='mini'
+                floated='right'
+                attached='left'
+                >+</Button>
+              <Button
+                compact
+                size='mini'
+                floated='right'
+                attached='right'
+                >-</Button>
+            </div>
+          </Card.Content>
+        </Feed.Event>
+      </Feed>
     )
   }
 }
 
-export default Cart
+export default Cart;
