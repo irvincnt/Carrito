@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { Card, Feed, Icon, Button } from 'semantic-ui-react'
+import { Card, Icon } from 'semantic-ui-react'
+
+import CartList from '../CartList'
 
 class Cart extends Component {
   constructor(props) {
@@ -18,23 +20,12 @@ class Cart extends Component {
         <Card.Content>
         {this.props.items.map(p => {
           return (
-          <Feed key={p.id}>
-            <Feed.Event>
-              <Feed.Label image={p.img} />
-              <Feed.Content>
-                <Feed.Date content={p.name} />
-                <Feed.Summary>
-                  {p.price}
-                </Feed.Summary>
-              </Feed.Content>
-              <Card.Content extra>
-                <div className='ui two buttons'>
-                  <Button compact size='mini' floated='right' attached='left'>+</Button>
-                  <Button compact size='mini' floated='right' attached='right' >-</Button>
-                </div>
-              </Card.Content>
-            </Feed.Event>
-          </Feed>
+          <CartList
+            key={p.id}
+            img={p.img}
+            name={p.name}
+            price={p.price}
+          />
           )
         })}
         </Card.Content>
