@@ -56,7 +56,6 @@ class App extends Component {
     }
 
     this.handleSaveProduct = this.handleSaveProduct.bind(this)
-    this.handlerAddProduct = this.handlerAddProduct.bind(this)
   }
 
   searchProduct(productId) {
@@ -70,7 +69,7 @@ class App extends Component {
       id: product.id,
       name: product.name,
       img: product.picture,
-      price: product.price * 4,
+      price: this.numberFormat(product.price * 4),
       cant: 4
     }
     var exist = this.searchProduct(product.id)
@@ -83,9 +82,21 @@ class App extends Component {
     }
   }
 
-handlerAddProduct(productId) {
+  numberFormat(amount, decimals) {
+    decimals = decimals || 0;
 
+    if (isNaN(amount) || amount === 0) return parseFloat(0).toFixed(decimals);
+
+    amount = '' + amount.toFixed(decimals);
+
+    var amount_parts = amount.split('.'), regexp = /(\d+)(\d{3})/;
+
+    while (regexp.test(amount_parts[0]))
+      amount_parts[0] = amount_parts[0].replace(regexp, '$1' + ',' + '$2');
+
+    return amount_parts.join('.');
 }
+
 
   render() {
     return (
@@ -104,7 +115,6 @@ handlerAddProduct(productId) {
             <CartList
               items={this.state.cart}
               num={this.state.num}
-              onAddProduct={this.handlerAddProduct}
             />
           </Grid.Column>
         </Grid>

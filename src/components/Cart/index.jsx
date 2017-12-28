@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Feed, Button } from 'semantic-ui-react'
+import { Feed } from 'semantic-ui-react'
 
 
 class Cart extends Component {
@@ -18,22 +18,6 @@ class Cart extends Component {
               {this.props.price}
             </Feed.Summary>
           </Feed.Content>
-          <Card.Content extra>
-            <div className='ui two buttons'>
-              <Button
-                compact
-                size='mini'
-                floated='right'
-                attached='left'
-                >+</Button>
-              <Button
-                compact
-                size='mini'
-                floated='right'
-                attached='right'
-                >-</Button>
-            </div>
-          </Card.Content>
         </Feed.Event>
       </Feed>
     )

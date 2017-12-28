@@ -6,6 +6,21 @@ class Product extends Component {
     super(props)
   }
 
+  numberFormat(amount, decimals) {
+    decimals = decimals || 0;
+
+    if (isNaN(amount) || amount === 0) return parseFloat(0).toFixed(decimals);
+
+    amount = '' + amount.toFixed(decimals);
+
+    var amount_parts = amount.split('.'), regexp = /(\d+)(\d{3})/;
+
+    while (regexp.test(amount_parts[0]))
+      amount_parts[0] = amount_parts[0].replace(regexp, '$1' + ',' + '$2');
+
+    return amount_parts.join('.');
+}
+
   render() {
     return(
       <Item.Group relaxed>
@@ -14,7 +29,7 @@ class Product extends Component {
             <Item.Content>
               <Item.Header as='a'>{this.props.name}</Item.Header>
               <Item.Meta>
-                <span className='cinema'>{this.props.price}</span>
+                <span className='cinema'>{this.numberFormat(this.props.price)}</span>
               </Item.Meta>
               <Item.Description>{this.props.datails}</Item.Description>
               <Item.Extra>
@@ -31,6 +46,10 @@ class Product extends Component {
                   Agregar
                   {/* <Icon name='right add to cart' /> */}
                 </Button>
+                <Button.Group floated='right'>
+                  <Button compact>+</Button>
+                  <Button compact>-</Button>
+                </Button.Group>
               </Item.Extra>
             </Item.Content>
           </Item>
