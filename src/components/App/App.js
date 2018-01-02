@@ -56,7 +56,7 @@ class App extends Component {
     }
 
     this.handleSaveProduct = this.handleSaveProduct.bind(this)
-    this.handlerAddProduct = this.handlerAddProduct.bind(this)
+    this.handlerPriceProduct = this.handlerPriceProduct.bind(this)
   }
 
   searchProduct(productId) {
@@ -64,11 +64,11 @@ class App extends Component {
     return product
   }
 
-  handlerAddProduct(indexCart){
+  handlerPriceProduct(indexCart){
     var cartCopy = Object.assign({}, this.state);
     cartCopy.cart = cartCopy.cart.slice();
     cartCopy.cart[indexCart] = Object.assign({}, cartCopy.cart[indexCart]);
-    cartCopy.cart[indexCart].price *= 10;
+    cartCopy.cart[indexCart].price *= 2;
     this.setState(cartCopy)
   }
 
@@ -81,13 +81,11 @@ class App extends Component {
       price: product.price,
       cant: 4
     }
+
     var exist = this.searchProduct(product.id)
     if(undefined !== exist && exist !== null){
       let indexCart = this.state.cart.findIndex(x => x.id === exist.id)
-
-      this.handlerAddProduct(indexCart)
-
-      console.log('ya existe ' + exist.id)
+      this.handlerPriceProduct(indexCart)
     }else{
       this.setState({
         cart: this.state.cart.concat([productCart])
