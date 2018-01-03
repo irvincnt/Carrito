@@ -59,21 +59,16 @@ class App extends Component {
     }
 
     this.handleSaveProduct = this.handleSaveProduct.bind(this)
-    this.handlerPriceProduct = this.handlerPriceProduct.bind(this)
+    this.handlerAddProduct = this.handlerAddProduct.bind(this)
     this.handlerIncrementProduct = this.handlerIncrementProduct.bind(this)
-    this.hanblerDecrementProduct = this.hanblerDecrementProduct.bind(this)
   }
 
-  searchProduct(productId) {
-    var product = this.state.cart.find(p => p.id === productId)
-    return product
-  }
-
-  handlerPriceProduct(indexCart){
-    var cartCopy = Object.assign({}, this.state);
-    cartCopy.cart[indexCart].total += cartCopy.cart[indexCart].price
-    this.setState(cartCopy)
-    console.log(JSON.stringify(cartCopy.cart[indexCart]))
+  handlerAddProduct(indexCart, indexProduct){
+    var statusCopy = Object.assign({}, this.state);
+    statusCopy.cart[indexCart].total += statusCopy.cart[indexCart].price
+    statusCopy.products[indexProduct].status -= 1
+    this.setState(statusCopy)
+    console.log(JSON.stringify(statusCopy))
   }
 
   handlerIncrementProduct(productId) {
@@ -85,12 +80,10 @@ class App extends Component {
     this.setState(productCopy.products[indexProduct])
   }
 
-  hanblerDecrementProduct() {
-    console.log('decrementa')
-  }
-
   handleSaveProduct(productId) {
     let product = this.state.products.find(p => p.id === productId);
+    let indexProduct = this.state.products.findIndex(x => x.id === product.id)
+
     var productCart = {
       id: product.id,
       name: product.name,
@@ -100,13 +93,16 @@ class App extends Component {
       total: product.price
     }
 
-    var exist = this.searchProduct(product.id)
+    var exist = this.state.cart.find(p => p.id === productId)
     if(undefined !== exist && exist !== null){
       let indexCart = this.state.cart.findIndex(x => x.id === exist.id)
-      this.handlerPriceProduct(indexCart)
+      this.handlerAddProduct(indexCart, indexProduct)
     }else{
+      var statusCopy = Object.assign({}, this.state);
+      statusCopy.products[indexProduct].status -= 1
       this.setState({
-        cart: this.state.cart.concat([productCart])
+        cart: this.state.cart.concat([productCart]),
+        statusCopy
       })
     }
   }

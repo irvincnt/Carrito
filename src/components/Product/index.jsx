@@ -35,7 +35,7 @@ class Product extends Component {
               <Item.Extra>
                 <Label>{this.props.marca}</Label>
                 <Label>{this.props.shipping}</Label>
-                <Label>{this.props.status}</Label>
+                <Label>{this.props.status} piezas en stock</Label>
                 <Button
                   basic
                   compact
@@ -47,7 +47,7 @@ class Product extends Component {
                   {/* <Icon name='right add to cart' /> */}
                 </Button>
                 <Button.Group floated='right'>
-                  <Button 
+                  <Button
                     compact
                     onClick={this.props.onIncrementProduct}
                     >+</Button>
