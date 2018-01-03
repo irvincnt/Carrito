@@ -18,8 +18,8 @@ class App extends Component {
           datails: 'Compra Protegida, recibe el producto que esperabas o te devolvemos tu dinero.',
           marca: 'Nikon',
           shipping: 'Envío gratis a todo el país',
-          status: 5
-
+          status: 5,
+          order: 0
         },
         {
           id: 2,
@@ -29,7 +29,8 @@ class App extends Component {
           datails: 'Compra Protegida, recibe el producto que esperabas o te devolvemos tu dinero.',
           marca: 'Sony',
           shipping: 'Envío gratis a todo el país',
-          status: 6
+          status: 6,
+          order: 0
         },
         {
           id: 3,
@@ -39,7 +40,8 @@ class App extends Component {
           datails: 'Compra Protegida, recibe el producto que esperabas o te devolvemos tu dinero.',
           marca: 'Fujifilm',
           shipping: 'Envío gratis a todo el país',
-          status: 2
+          status: 2,
+          order: 0
         },
         {
           id: 4,
@@ -49,7 +51,8 @@ class App extends Component {
           datails: 'Compra Protegida, recibe el producto que esperabas o te devolvemos tu dinero.',
           marca: 'Canon',
           shipping: 'Envío gratis a todo el país',
-          status: 6
+          status: 6,
+          order: 0
         }
       ],
       cart: []
@@ -57,6 +60,8 @@ class App extends Component {
 
     this.handleSaveProduct = this.handleSaveProduct.bind(this)
     this.handlerPriceProduct = this.handlerPriceProduct.bind(this)
+    this.handlerIncrementProduct = this.handlerIncrementProduct.bind(this)
+    this.hanblerDecrementProduct = this.hanblerDecrementProduct.bind(this)
   }
 
   searchProduct(productId) {
@@ -66,10 +71,22 @@ class App extends Component {
 
   handlerPriceProduct(indexCart){
     var cartCopy = Object.assign({}, this.state);
-    cartCopy.cart = cartCopy.cart.slice();
-    cartCopy.cart[indexCart] = Object.assign({}, cartCopy.cart[indexCart]);
-    cartCopy.cart[indexCart].price *= 2;
+    cartCopy.cart[indexCart].total += cartCopy.cart[indexCart].price
     this.setState(cartCopy)
+    console.log(JSON.stringify(cartCopy.cart[indexCart]))
+  }
+
+  handlerIncrementProduct(productId) {
+    let product = this.state.products.find(p => p.id === productId);
+    let indexProduct = this.state.products.findIndex(x => x.id === product.id)
+
+    var productCopy = Object.assign({}, this.state);
+    productCopy.products[indexProduct].order += 1;
+    this.setState(productCopy.products[indexProduct])
+  }
+
+  hanblerDecrementProduct() {
+    console.log('decrementa')
   }
 
   handleSaveProduct(productId) {
@@ -79,7 +96,8 @@ class App extends Component {
       name: product.name,
       img: product.picture,
       price: product.price,
-      cant: 4
+      order: 0,
+      total: product.price
     }
 
     var exist = this.searchProduct(product.id)
@@ -104,6 +122,7 @@ class App extends Component {
             <ProductList
               products={this.state.products}
               onSaveProduct={this.handleSaveProduct}
+              onIncrementProduct={this.handlerIncrementProduct}
             />
           </Grid.Column>
           <Grid.Column width={6}>

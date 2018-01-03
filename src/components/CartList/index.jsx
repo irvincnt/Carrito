@@ -39,7 +39,7 @@ class CartList extends Component {
             key={p.id}
             img={p.img}
             name={p.name}
-            price={this.numberFormat(p.price)}
+            total={this.numberFormat(p.total)}
           />
           )
         })}

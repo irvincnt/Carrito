@@ -47,7 +47,10 @@ class Product extends Component {
                   {/* <Icon name='right add to cart' /> */}
                 </Button>
                 <Button.Group floated='right'>
-                  <Button compact>+</Button>
+                  <Button 
+                    compact
+                    onClick={this.props.onIncrementProduct}
+                    >+</Button>
                   <Button compact>-</Button>
                 </Button.Group>
               </Item.Extra>
