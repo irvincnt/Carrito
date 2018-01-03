@@ -17,7 +17,7 @@ class App extends Component {
           price: 12346,
           datails: 'Compra Protegida, recibe el producto que esperabas o te devolvemos tu dinero.',
           marca: 'Nikon',
-          shipping: 'Envío gratis a todo el país',
+          shipping: 'Envío gratis',
           status: 5,
           order: 0
         },
@@ -28,7 +28,7 @@ class App extends Component {
           price: 3938,
           datails: 'Compra Protegida, recibe el producto que esperabas o te devolvemos tu dinero.',
           marca: 'Sony',
-          shipping: 'Envío gratis a todo el país',
+          shipping: 'Envío gratis',
           status: 6,
           order: 0
         },
@@ -39,7 +39,7 @@ class App extends Component {
           price: 18999,
           datails: 'Compra Protegida, recibe el producto que esperabas o te devolvemos tu dinero.',
           marca: 'Fujifilm',
-          shipping: 'Envío gratis a todo el país',
+          shipping: 'Envío gratis',
           status: 2,
           order: 0
         },
@@ -50,7 +50,7 @@ class App extends Component {
           price: 1000,
           datails: 'Compra Protegida, recibe el producto que esperabas o te devolvemos tu dinero.',
           marca: 'Canon',
-          shipping: 'Envío gratis a todo el país',
+          shipping: 'Envío gratis',
           status: 6,
           order: 0
         }
@@ -118,7 +118,7 @@ class App extends Component {
             <ProductList
               products={this.state.products}
               onSaveProduct={this.handleSaveProduct}
-              onIncrementProduct={this.handlerIncrementProduct}
+              onIncrementProduct={this.handleSaveProduct}
             />
           </Grid.Column>
           <Grid.Column width={6}>
