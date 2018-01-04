@@ -11,6 +11,7 @@ class App extends Component {
     this.state = {
       openOrder: false,
       total: 0,
+      sum: 0,
       products: [
         {
           id: 1,
@@ -68,6 +69,12 @@ class App extends Component {
     this.setState({total: total})
   }
 
+  sumTotal(array) {
+    var sum = 0
+    array.forEach(product => sum += product.total)
+    this.setState({sum: sum})
+  }
+
   handlerAddProduct(indexCart, indexProduct){
     var statusCopy = Object.assign({}, this.state);
     if (statusCopy.products[indexProduct].status !== 0) {
@@ -76,6 +83,7 @@ class App extends Component {
       statusCopy.products[indexProduct].status -= 1
       this.setState(statusCopy)
       this.sumProducts(statusCopy.cart)
+      this.sumTotal(statusCopy.cart)
     } else {
       alert('Producto inexistente')
     }
@@ -96,6 +104,7 @@ class App extends Component {
       statusCopy.products[indexProduct].status += 1
       statusCopy.cart[indexCart].order -= 1
       statusCopy.total -= 1
+      statusCopy.sum -= statusCopy.cart[indexCart].price
       this.setState(statusCopy)
     }
   }
@@ -121,6 +130,7 @@ class App extends Component {
       var statusCopy = Object.assign({}, this.state);
       statusCopy.products[indexProduct].status -= 1
       this.sumProducts(statusCopy.cart)
+      this.sumTotal(statusCopy.cart)
       this.setState({
         cart: this.state.cart.concat([productCart]),
         statusCopy
@@ -135,7 +145,7 @@ class App extends Component {
 
   renderOpenOrder() {
     if (this.state.openOrder) {
-      return <Order/>
+      return <Order sum={this.state.sum}/>
     }
   }
 
