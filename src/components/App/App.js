@@ -9,6 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      openOrder: false,
       total: 0,
       products: [
         {
@@ -58,6 +59,7 @@ class App extends Component {
     this.handleSaveProduct = this.handleSaveProduct.bind(this)
     this.handlerAddProduct = this.handlerAddProduct.bind(this)
     this.handlerRemoveProduct = this.handlerRemoveProduct.bind(this)
+    this.handlerOpenOrder = this.handlerOpenOrder.bind(this)
   }
 
   sumProducts(array) {
@@ -126,6 +128,17 @@ class App extends Component {
     }
   }
 
+  handlerOpenOrder(event) {
+    event.preventDefault()
+    this.setState({ openOrder: true })
+  }
+
+  renderOpenOrder() {
+    if (this.state.openOrder) {
+      return <Order/>
+    }
+  }
+
   render() {
     return (
       <Container className={style.root}>
@@ -145,8 +158,9 @@ class App extends Component {
             <CartList
               items={this.state.cart}
               total={this.state.total}
+              onOpenOrder={this.handlerOpenOrder}
             />
-            <Order/>
+            {this.renderOpenOrder()}
           </Grid.Column>
         </Grid>
       </Container>

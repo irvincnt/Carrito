@@ -24,7 +24,7 @@ class Product extends Component {
             <Item.Content>
               <Item.Header as='a'>{this.props.name}</Item.Header>
               <Item.Meta>
-                <span className='cinema'>{this.numberFormat(this.props.price)}</span>
+                <span className='cinema'>$ {this.numberFormat(this.props.price)}</span>
               </Item.Meta>
               <Item.Description>{this.props.datails}</Item.Description>
               <Item.Extra>

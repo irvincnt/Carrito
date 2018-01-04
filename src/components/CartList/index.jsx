@@ -46,6 +46,7 @@ class CartList extends Component {
             color='green'
             compact
             size="medium"
+            onClick={this.props.onOpenOrder}
             >Proceder al Pago ({this.props.total} productos)
           </Button>
         </Card.Content>
