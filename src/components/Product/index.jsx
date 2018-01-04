@@ -51,7 +51,10 @@ class Product extends Component {
                     compact
                     onClick={this.props.onIncrementProduct}
                     >+</Button>
-                  <Button compact>-</Button>
+                  <Button
+                    compact
+                    onClick={this.props.onRemoveProduct}
+                    >-</Button>
                 </Button.Group>
               </Item.Extra>
             </Item.Content>

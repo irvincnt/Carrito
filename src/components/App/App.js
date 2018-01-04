@@ -60,24 +60,35 @@ class App extends Component {
 
     this.handleSaveProduct = this.handleSaveProduct.bind(this)
     this.handlerAddProduct = this.handlerAddProduct.bind(this)
-    this.handlerIncrementProduct = this.handlerIncrementProduct.bind(this)
+    this.handlerRemoveProduct = this.handlerRemoveProduct.bind(this)
   }
 
   handlerAddProduct(indexCart, indexProduct){
     var statusCopy = Object.assign({}, this.state);
-    statusCopy.cart[indexCart].total += statusCopy.cart[indexCart].price
-    statusCopy.products[indexProduct].status -= 1
-    this.setState(statusCopy)
-    console.log(JSON.stringify(statusCopy))
+    if (statusCopy.products[indexProduct].status !== 0){
+      statusCopy.cart[indexCart].total += statusCopy.cart[indexCart].price
+      statusCopy.products[indexProduct].status -= 1
+      this.setState(statusCopy)
+    }else{
+      alert('Producto inexistente')
+    }
   }
 
-  handlerIncrementProduct(productId) {
+  handlerRemoveProduct(productId) {
     let product = this.state.products.find(p => p.id === productId);
     let indexProduct = this.state.products.findIndex(x => x.id === product.id)
+    let cart = this.state.cart.find(p => p.id === productId)
+    let indexCart = this.state.cart.findIndex(x => x.id === cart.id)
 
-    var productCopy = Object.assign({}, this.state);
-    productCopy.products[indexProduct].order += 1;
-    this.setState(productCopy.products[indexProduct])
+    var statusCopy = Object.assign({}, this.state);
+    if(statusCopy.cart[indexCart].total === statusCopy.cart[indexCart].price ){
+      indexCart !== -1 && statusCopy.cart.splice( indexCart, 1 );
+      this.setState(statusCopy)
+    }else{
+      statusCopy.cart[indexCart].total -= statusCopy.cart[indexCart].price
+      statusCopy.products[indexProduct].status += 1
+      this.setState(statusCopy)
+    }
   }
 
   handleSaveProduct(productId) {
@@ -119,6 +130,7 @@ class App extends Component {
               products={this.state.products}
               onSaveProduct={this.handleSaveProduct}
               onIncrementProduct={this.handleSaveProduct}
+              onRemoveProduct={this.handlerRemoveProduct}
             />
           </Grid.Column>
           <Grid.Column width={6}>
