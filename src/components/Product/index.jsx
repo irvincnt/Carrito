@@ -39,7 +39,6 @@ class Product extends Component {
                   onClick={this.props.onSaveProduct}
                 >
                   Agregar al carrito
-                  {/* <Icon name='right add to cart' /> */}
                 </Button>
                 <Button.Group floated='right'>
                   <Button

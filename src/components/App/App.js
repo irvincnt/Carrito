@@ -20,7 +20,6 @@ class App extends Component {
           marca: 'Nikon',
           shipping: 'Envío gratis',
           status: 5,
-          order: 0
         },
         {
           id: 2,
@@ -31,7 +30,6 @@ class App extends Component {
           marca: 'Sony',
           shipping: 'Envío gratis',
           status: 6,
-          order: 0
         },
         {
           id: 3,
@@ -42,7 +40,6 @@ class App extends Component {
           marca: 'Fujifilm',
           shipping: 'Envío gratis',
           status: 2,
-          order: 0
         },
         {
           id: 4,
@@ -53,7 +50,6 @@ class App extends Component {
           marca: 'Canon',
           shipping: 'Envío gratis',
           status: 6,
-          order: 0
         }
       ],
       cart: []
