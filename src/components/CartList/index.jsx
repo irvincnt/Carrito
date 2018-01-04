@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Icon } from 'semantic-ui-react'
+import { Card, Icon, Button, Grid } from 'semantic-ui-react'
 
 import Cart from '../Cart'
 
@@ -28,7 +28,7 @@ class CartList extends Component {
       <Card>
         <Card.Content>
           <Card.Header>
-            Carrito de Compras ( {this.props.num} )
+            Carrito de Compras
             <Icon size="large"  />
           </Card.Header>
         </Card.Content>
@@ -40,9 +40,19 @@ class CartList extends Component {
             img={p.img}
             name={p.name}
             total={this.numberFormat(p.total)}
+            order={p.order}
           />
           )
         })}
+        </Card.Content>
+        <Card.Content extra>
+          <Button
+            basic
+            color='green'
+            compact
+            size="medium"
+            >Proceder al Pago ({this.props.total} productos)
+          </Button>
         </Card.Content>
       </Card>
     )

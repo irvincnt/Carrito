@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      num: 5,
+      total: 0,
       products: [
         {
           id: 1,
@@ -63,13 +63,21 @@ class App extends Component {
     this.handlerRemoveProduct = this.handlerRemoveProduct.bind(this)
   }
 
+  sumProducts(array) {
+    var total = 1
+    array.forEach(product => total += product.order)
+    this.setState({total: total})
+  }
+
   handlerAddProduct(indexCart, indexProduct){
     var statusCopy = Object.assign({}, this.state);
-    if (statusCopy.products[indexProduct].status !== 0){
+    if (statusCopy.products[indexProduct].status !== 0) {
       statusCopy.cart[indexCart].total += statusCopy.cart[indexCart].price
+      statusCopy.cart[indexCart].order += 1
       statusCopy.products[indexProduct].status -= 1
       this.setState(statusCopy)
-    }else{
+      this.sumProducts(statusCopy.cart)
+    } else {
       alert('Producto inexistente')
     }
   }
@@ -84,9 +92,11 @@ class App extends Component {
     if(statusCopy.cart[indexCart].total === statusCopy.cart[indexCart].price ){
       indexCart !== -1 && statusCopy.cart.splice( indexCart, 1 );
       this.setState(statusCopy)
-    }else{
+    } else {
       statusCopy.cart[indexCart].total -= statusCopy.cart[indexCart].price
       statusCopy.products[indexProduct].status += 1
+      statusCopy.cart[indexCart].order -= 1
+      statusCopy.total -= 1
       this.setState(statusCopy)
     }
   }
@@ -100,12 +110,12 @@ class App extends Component {
       name: product.name,
       img: product.picture,
       price: product.price,
-      order: 0,
+      order: 1,
       total: product.price
     }
 
     var exist = this.state.cart.find(p => p.id === productId)
-    if(undefined !== exist && exist !== null){
+    if (undefined !== exist && exist !== null) {
       let indexCart = this.state.cart.findIndex(x => x.id === exist.id)
       this.handlerAddProduct(indexCart, indexProduct)
     }else{
@@ -115,6 +125,7 @@ class App extends Component {
         cart: this.state.cart.concat([productCart]),
         statusCopy
       })
+      this.sumProducts(statusCopy.cart)
     }
   }
 
@@ -136,7 +147,7 @@ class App extends Component {
           <Grid.Column width={6}>
             <CartList
               items={this.state.cart}
-              num={this.state.num}
+              total={this.state.total}
             />
           </Grid.Column>
         </Grid>

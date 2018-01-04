@@ -43,7 +43,7 @@ class Product extends Component {
                   floated='right'
                   onClick={this.props.onSaveProduct}
                 >
-                  Agregar
+                  Agregar al carrito
                   {/* <Icon name='right add to cart' /> */}
                 </Button>
                 <Button.Group floated='right'>

@@ -15,7 +15,7 @@ class Cart extends Component {
           <Feed.Content>
             <Feed.Date content={this.props.name} />
             <Feed.Summary>
-              {this.props.total}
+              {this.props.total} ({this.props.order} productos)
             </Feed.Summary>
           </Feed.Content>
         </Feed.Event>
