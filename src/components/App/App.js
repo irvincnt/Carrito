@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, Grid, Header } from 'semantic-ui-react'
 import ProductList from '../ProductList'
 import CartList from '../CartList'
+import Order from '../Order'
 import style from './App.css'
 
 class App extends Component {
@@ -64,7 +65,7 @@ class App extends Component {
   }
 
   sumProducts(array) {
-    var total = 1
+    var total = 0
     array.forEach(product => total += product.order)
     this.setState({total: total})
   }
@@ -121,11 +122,11 @@ class App extends Component {
     }else{
       var statusCopy = Object.assign({}, this.state);
       statusCopy.products[indexProduct].status -= 1
+      this.sumProducts(statusCopy.cart)
       this.setState({
         cart: this.state.cart.concat([productCart]),
         statusCopy
       })
-      this.sumProducts(statusCopy.cart)
     }
   }
 
@@ -149,6 +150,7 @@ class App extends Component {
               items={this.state.cart}
               total={this.state.total}
             />
+            <Order/>
           </Grid.Column>
         </Grid>
       </Container>
