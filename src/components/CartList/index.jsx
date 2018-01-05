@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Format from '../numberFormat'
 import { Card, Icon, Button, Grid } from 'semantic-ui-react'
 
 import Cart from '../Cart'
