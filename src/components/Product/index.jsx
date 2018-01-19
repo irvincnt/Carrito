@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Format from '../numberFormat'
-import { Button, Item, Label, Divider } from 'semantic-ui-react'
+import { Card, Image, Label, Button } from 'semantic-ui-react'
 
 class Product extends Component {
   constructor(props) {
@@ -9,45 +9,42 @@ class Product extends Component {
 
   render() {
     return(
-      <Item.Group relaxed>
-          <Item>
-            <Item.Image size='tiny' src={this.props.picture} />
-            <Item.Content>
-              <Item.Header as='a'>{this.props.name}</Item.Header>
-              <Item.Meta>
-                <span className='cinema'>
-                  <Format number={this.props.price}/>
-                </span>
-              </Item.Meta>
-              <Item.Description>{this.props.datails}</Item.Description>
-              <Item.Extra>
-                <Label>{this.props.marca}</Label>
-                <Label>{this.props.shipping}</Label>
-                <Label>{this.props.status} piezas en stock</Label>
-                <Button
-                  basic
-                  compact
-                  color='blue'
-                  floated='right'
-                  onClick={this.props.onSaveProduct}
-                >
-                  Agregar al carrito
-                </Button>
-                <Button.Group floated='right'>
-                  <Button
-                    compact
-                    onClick={this.props.onIncrementProduct}
-                    >+</Button>
-                  <Button
-                    compact
-                    onClick={this.props.onRemoveProduct}
-                    >-</Button>
-                </Button.Group>
-              </Item.Extra>
-            </Item.Content>
-          </Item>
-          <Divider fitted />
-      </Item.Group>
+      <Card>
+        <Image size="small" src={this.props.picture}  />
+        <Card.Content>
+          <Card.Header style={{fontSize: 15}}>{this.props.name}</Card.Header>
+          <Card.Meta>
+            <Format number={this.props.price}/>
+          </Card.Meta>
+          <Card.Description>
+            <Label>{this.props.marca}</Label>
+            <Label>{this.props.status} en stock</Label>
+          </Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+          <Button
+            basic
+            compact
+            color='blue'
+            floated='right'
+            onClick={this.props.onSaveProduct}
+          >
+            Agregar al carrito
+          </Button>
+        </Card.Content>
+        <Card.Content extra>
+          <Button.Group floated='right'>
+            <Button
+              compact
+              onClick={this.props.onIncrementProduct}
+              >+</Button>
+            <Button
+              compact
+              onClick={this.props.onRemoveProduct}
+              >-</Button>
+          </Button.Group>
+        </Card.Content>
+      </Card>
 
     )
   }

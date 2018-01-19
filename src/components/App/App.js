@@ -20,7 +20,6 @@ class App extends Component {
           price: 12346,
           datails: 'Compra Protegida, recibe el producto que esperabas o te devolvemos tu dinero.',
           marca: 'Nikon',
-          shipping: 'Envío gratis',
           status: 5,
         },
         {
@@ -30,7 +29,6 @@ class App extends Component {
           price: 3938,
           datails: 'Compra Protegida, recibe el producto que esperabas o te devolvemos tu dinero.',
           marca: 'Sony',
-          shipping: 'Envío gratis',
           status: 6,
         },
         {
@@ -40,7 +38,6 @@ class App extends Component {
           price: 18999,
           datails: 'Compra Protegida, recibe el producto que esperabas o te devolvemos tu dinero.',
           marca: 'Fujifilm',
-          shipping: 'Envío gratis',
           status: 2,
         },
         {
@@ -50,8 +47,23 @@ class App extends Component {
           price: 1000,
           datails: 'Compra Protegida, recibe el producto que esperabas o te devolvemos tu dinero.',
           marca: 'Canon',
-          shipping: 'Envío gratis',
           status: 6,
+        },
+        {
+          id: 5,
+          name: 'Holster Camera Case ',
+          picture: 'https://images-na.ssl-images-amazon.com/images/I/91cMeS6xLHL._SX522_.jpg',
+          price: 328,
+          marca: 'Amazon',
+          status: 10,
+        },
+        {
+          id: 6,
+          name: 'Olympus M. 40-150mm ',
+          picture: 'https://images-na.ssl-images-amazon.com/images/I/81vy-AiCWSL._AC_UL160_SR160,160_.jpg',
+          price: 2733,
+          marca: 'Amazon',
+          status: 4,
         }
       ],
       cart: []
@@ -99,6 +111,7 @@ class App extends Component {
     if(statusCopy.cart[indexCart].total === statusCopy.cart[indexCart].price ){
       indexCart !== -1 && statusCopy.cart.splice( indexCart, 1 );
       this.setState(statusCopy)
+      alert('El producto fue eliminado del carrito de compras')
     } else {
       statusCopy.cart[indexCart].total -= statusCopy.cart[indexCart].price
       statusCopy.products[indexProduct].status += 1
@@ -156,7 +169,7 @@ class App extends Component {
           E-commerce
         </Header>
         <Grid>
-          <Grid.Column width={10}>
+          <Grid.Column width={12}>
             <ProductList
               products={this.state.products}
               onSaveProduct={this.handleSaveProduct}
@@ -164,7 +177,7 @@ class App extends Component {
               onRemoveProduct={this.handlerRemoveProduct}
             />
           </Grid.Column>
-          <Grid.Column width={6}>
+          <Grid.Column width={4}>
             <CartList
               items={this.state.cart}
               total={this.state.total}
