@@ -9,7 +9,7 @@ class Product extends Component {
 
   render() {
     return(
-      <Card>
+      <Card style={{ marginTop: 15 }}>
         <Image size="small" src={this.props.picture}  />
         <Card.Content>
           <Card.Header style={{fontSize: 15}}>{this.props.name}</Card.Header>
