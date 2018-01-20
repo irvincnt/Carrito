@@ -23,6 +23,7 @@ class Order extends Component {
             compact
             size="medium"
             floated='right'
+            onClick={this.props.onClearCart}
             >Pagar
           </Button>
         </Card.Content>

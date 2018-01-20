@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Grid, Header } from 'semantic-ui-react'
+import Menu from '../Menu'
 import ProductList from '../ProductList'
 import CartList from '../CartList'
 import Order from '../Order'
@@ -121,6 +122,11 @@ class App extends Component {
     this.handlerAddProduct = this.handlerAddProduct.bind(this)
     this.handlerRemoveProduct = this.handlerRemoveProduct.bind(this)
     this.handlerOpenOrder = this.handlerOpenOrder.bind(this)
+    this.handlerClearCart = this.handlerClearCart.bind(this)
+  }
+
+  handlerClearCart() {
+    this.state.cart.length = 0
   }
 
   sumProducts(array) {
@@ -206,16 +212,19 @@ class App extends Component {
 
   renderOpenOrder() {
     if (this.state.openOrder) {
-      return <Order sum={this.state.sum}/>
+      return (
+        <Order
+          sum={this.state.sum}
+          onClearCart={this.handlerClearCart}
+        />
+      )
     }
   }
 
   render() {
     return (
       <Container className={style.root}>
-        <Header as='h3' block>
-          E-commerce
-        </Header>
+        <Menu/>
         <Grid>
           <Grid.Column width={12}>
             <ProductList
