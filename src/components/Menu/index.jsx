@@ -5,8 +5,10 @@ class Navigation extends Component {
 
   render() {
     return(
-      <Segment tertiary >
-        <Input labelPosition='right' action={{ icon: 'search', color: 'teal' }} placeholder='Search...' />
+      <Segment textAlign='right' clearing style={{ marginTop: 15}}>
+        <Input
+          action={{ icon: 'search', color: 'teal' }}
+          placeholder='Search...' />
       </Segment>
     )
   }
