@@ -115,7 +115,7 @@ class App extends Component {
           status: 10,
         }
       ],
-      cart: []
+      cart: [],
     }
 
     this.handleSaveProduct = this.handleSaveProduct.bind(this)
@@ -126,7 +126,11 @@ class App extends Component {
   }
 
   handlerClearCart() {
-    this.state.cart.length = 0
+    this.setState({
+      cart: [],
+      sum: 0,
+      total: 0
+    });
   }
 
   sumProducts(array) {
