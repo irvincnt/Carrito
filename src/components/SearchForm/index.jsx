@@ -1,15 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Input } from 'semantic-ui-react'
 
-class searchForm extends Component {
-
-  render() {
+function searchForm (props) {
     return(
-        <Input
-          action={{ icon: 'search', color: 'teal' }}
-          placeholder='Search...' />
+      <Input
+        action={{ icon: 'search', color: 'teal' }}
+        placeholder='Search...' />
     )
-  }
 }
 
 export default searchForm;
